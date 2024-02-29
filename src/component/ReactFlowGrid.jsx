@@ -1,4 +1,5 @@
 import React,{useCallback} from 'react'
+import {useFormData,useFormDataDispatch} from "../App"
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -14,16 +15,12 @@ import RelationRow from "./RelationRow"
  
 import 'reactflow/dist/style.css';
 
-const initialNodes = [
-  { id: '4', type:'RelationNodeDot',position: { x: 50, y: 200 }, data: { label: '4' } },
-  { id: '5', type:'RelationNodeDot',position: { x: 100, y: 300 }, data: { label: '6' } },
-];
 
-const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
 
 const nodeTypes={RelationNodeDot:RelationNode,RelationRowDot:RelationRow};
 
 const ReactFlowGrid = () => {
+  const {initialEdges,initialNodes}=useFormData();
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
  
@@ -31,7 +28,6 @@ const ReactFlowGrid = () => {
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges],
   );
-  console.log()
     return (
       <div >
         <ReactFlow
