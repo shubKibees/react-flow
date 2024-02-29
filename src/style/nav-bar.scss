@@ -1,0 +1,17 @@
+
+@use "reset";
+@use "global-style";
+@use "variabel" as gv;
+
+
+
+.nav_bar{
+   display: flex;
+   justify-content: space-between;
+   padding: 20px;
+   background-color:gv.$nav-bar-color;
+   .nav_bar_links{
+      display: flex;
+      gap: 20px;
+   }
+}

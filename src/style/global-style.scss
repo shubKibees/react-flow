@@ -1,0 +1,9 @@
+@use "variabel" as gv;
+
+
+.container{
+   $width:1200px;
+   $padding:10px;
+   width: min($width,calc(100% - $padding));
+   margin-inline: auto;
+}

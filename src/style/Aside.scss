@@ -1,0 +1,9 @@
+@use "reset";
+@use "global-style";
+@use "variabel" as gv;
+
+
+.nav-aside{
+   padding: 20px;
+   background-color:gv.$nav-bar-color;
+}
