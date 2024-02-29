@@ -33,11 +33,11 @@ function formDataReducer({task,action}){
   return (
     <>
     <NavBar />
-    <formDataContext.provider value={formData} >
-      <formDataDispatchContext.provider value={formDataDispatch} >
+    <formDataContext.Provider value={formData} >
+      <formDataDispatchContext.Provider value={formDataDispatch} >
          <Layout />
-      </formDataDispatchContext.provider>
-    </formDataContext.provider>
+      </formDataDispatchContext.Provider>
+    </formDataContext.Provider>
     </>
   )
 }

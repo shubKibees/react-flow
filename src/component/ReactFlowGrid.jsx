@@ -23,7 +23,7 @@ const ReactFlowGrid = () => {
   const {initialEdges,initialNodes}=useFormData();
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
- 
+  console.log(initialEdges,initialNodes);
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges],
