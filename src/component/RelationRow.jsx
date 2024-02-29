@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
+import { useFormData,useFormDataDispatch } from '../App';
 
 const RelationRow = ({ property, value }) => {
-  let row = (
+  const dispatch = useFormDataDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "addNode", node: { type: "RelationRowDot" } });
+    return () => {
+    };
+  }, [dispatch]); 
+
+  console.log(useFormData())
+
+  return (
     <tr>
       <td>{property}</td>
       <td>
@@ -11,8 +22,6 @@ const RelationRow = ({ property, value }) => {
       </td>
     </tr>
   );
-  
-  return row = property !== "" ? row : null;
 };
 
 export default RelationRow;

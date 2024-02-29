@@ -22,8 +22,8 @@ const RelationNode = () => {
         <tbody>
           {
             RelationDataDefault.RelationRowData.map(({property,value},index)=>{
-              return <RelationRow key={index} property={property} value={value}>
-              </RelationRow>;
+              return (property!=""?<RelationRow key={index} property={property} value={value}>
+              </RelationRow>:null);
             })
           }
         </tbody>

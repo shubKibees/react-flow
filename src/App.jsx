@@ -9,6 +9,8 @@ const initialNodes = [
 ];
 
 const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
+
+
 const formDataContext=createContext(null);
 const formDataDispatchContext=createContext(null);
 export function useFormData() {
@@ -18,28 +20,42 @@ export function useFormDataDispatch() {
   return useContext(formDataDispatchContext);
 };
 
+function createNewNode(nodeType = "RelationNodeDot") {
+  const randomValue = (Math.random() * 100).toString();
+  return {
+    id: randomValue,
+    type: nodeType,
+    data: { label: randomValue },
+    label:randomValue
+  };
+}
 
-function formDataReducer({task,action}){
-  switch(action.type){
-    case 'addTask':
-      return {...task, [action.key]: action.value};
+function formDataReducer(state, action) {
+  switch (action.type) {
+    case 'addNode':
+      return {
+        ...state,
+        initialNodes: state.initialNodes.concat(createNewNode(action.node.type)),
+      };
     default:
       throw new Error();
   }
 }
 
- function App() {
-  const [formData,formDataDispatch]=useReducer(formDataReducer,{initialEdges,initialNodes});
+function App() {
+  const initialState = { initialEdges, initialNodes };
+  const [formData, formDataDispatch] = useReducer(formDataReducer, initialState);
+
   return (
     <>
-    <NavBar />
-    <formDataContext.Provider value={formData} >
-      <formDataDispatchContext.Provider value={formDataDispatch} >
-         <Layout />
-      </formDataDispatchContext.Provider>
-    </formDataContext.Provider>
+      <NavBar />
+      <formDataContext.Provider value={formData}>
+        <formDataDispatchContext.Provider value={formDataDispatch}>
+          <Layout />
+        </formDataDispatchContext.Provider>
+      </formDataContext.Provider>
     </>
-  )
+  );
 }
 
-export default App  
+export default App;
