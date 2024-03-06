@@ -6,19 +6,19 @@ const RelationNode = ({ data, isConnectable }) => {
 
   return (
     <div>
-      <Handle type="source" position={Position.Top} isConnectable={isConnectable} id='1' />
+      <Handle type="source" position={Position.Top} isConnectable={isConnectable} id='a' />
       <div className="relationnode">
         <div className="releation-name">Table_one</div>
         <div className="table nodrag">
-          <div className="header">
+          {/* <div className="header">
             <div className="domain-name">Property</div>
             <div className="domain-value">Value</div>
-          </div>
+          </div> */}
           <div className="body">
           </div>
         </div>
       </div>
-      <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} id='2' />
+      <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} id='b' />
     </div>
   );
 };
