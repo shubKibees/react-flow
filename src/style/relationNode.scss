@@ -3,6 +3,10 @@
 
 /* Add this to your CSS or SCSS file */
 
+tr,td{
+   position: relative;
+}
+
 .relationnode{
    $border-radius:20px;
    border: 1px solid gv.$nav-bar-color; 
@@ -14,26 +18,16 @@
       background-color: gv.$nav-bar-color;
       border-radius: $border-radius $border-radius 0px 0px;
    }
-   table{
-      padding: 20px;
-      width: 100%;
-      border-collapse: collapse;
-      border-radius: $border-radius;
-      tr{
-         text-align: left;
-         border-bottom: 1px solid gv.$nav-bar-color;
-         &:not(:first-child):last-child{
-            border-bottom: 0px;
-         }
-         :is(td,th){
-            padding: 8px;
-            position: relative;
-            &:not(:first-child){
-               border-left: 1px solid gv.$nav-bar-color;
-            }
+   .table{
+      :is(.header,.tuple){
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 5px;
+         padding: 10px;
+         &:not(:last-child){
+            border-bottom: 1px solid gv.$nav-bar-color;
          }
       }
-      
    }
 
  }

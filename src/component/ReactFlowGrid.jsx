@@ -1,5 +1,4 @@
-import React,{useCallback} from 'react'
-import {useFormData,useFormDataDispatch} from "../App"
+import React,{useCallback,useEffect} from 'react'
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -7,26 +6,46 @@ import ReactFlow, {
   useNodesState,
   useEdgesState,
   addEdge,
+  applyEdgeChanges, 
+  applyNodeChanges
 } from 'reactflow';
 
-import FormNodeUpdater from './FormNodeUpdater';
-import RelationNode from './RelationNode';
-import RelationRow from "./RelationRow"
- 
+
 import 'reactflow/dist/style.css';
 
+import RelationNode from './RelationNode';
 
+const initialNodes = [
+  { id: 'node-1',type:"relationNode", data: { label: 'Node 1' }, position: { x: 0, y: 0 }},
+  { id: 'node-2', data: { label: 'Node 2' }, position: { x: 100, y: 100 } },
+  { id: 'node-3', data: { label: 'Node 3' }, position: { x: 200, y: 300 } },
+];
 
-const nodeTypes={RelationNodeDot:RelationNode,RelationRowDot:RelationRow};
+const initialEdges = [
+  { id: 'edge-1', source: 'node-1',sourceHandle: 'a', target: 'node-2' },
+  { id: 'edge-2', source: 'node-1',sourceHandle: 'b', target: 'node-3'},
+];
+const nodeTypes = { relationNode: RelationNode };
 
 const ReactFlowGrid = () => {
-  const {initialEdges,initialNodes}=useFormData();
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  console.log(initialEdges,initialNodes);
+  const [nodes, setNodes] = useNodesState(initialNodes);
+  const [edges, setEdges] = useEdgesState(initialEdges);
+
+  useEffect(() => {
+    console.log(edges);
+  }, [edges]);
+
+  const onNodesChange = useCallback(
+    (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
+    [setNodes]
+  );
+  const onEdgesChange = useCallback(
+    (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+    [setEdges]
+  );
   const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
-    [setEdges],
+    (connection) => setEdges((eds) => addEdge(connection, eds)),
+    [setEdges]
   );
     return (
       <div >
@@ -34,7 +53,6 @@ const ReactFlowGrid = () => {
           nodes={nodes}
           edges={edges}
           onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           nodeTypes={nodeTypes}
         >
@@ -45,4 +63,4 @@ const ReactFlowGrid = () => {
     );
 }
 
-export default ReactFlowGrid
+export default ReactFlowGrid;

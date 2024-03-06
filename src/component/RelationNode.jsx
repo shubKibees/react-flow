@@ -1,34 +1,24 @@
 import React from 'react';
-import { RelationDataDefault } from "../utility/tableDataDefault";
-import RelationRow from './RelationRow';
-import { Handle, Position } from 'reactflow';
 import "../style/relationNode.scss"
+import { Handle, Position } from 'reactflow';
 
-const RelationNode = () => {
+const RelationNode = ({ data, isConnectable }) => {
+
   return (
-    <div className="relationnode">
-      <Handle type="target" position={Position.Top} />
-      <div className="releation-name">{RelationDataDefault.relationName}</div>
-      <table>
-        <thead>
-          <tr>
-            {
-              RelationDataDefault.Domain.map((domain, index) => {
-                return <th key={index}>{domain}</th>
-              })
-            }
-          </tr>
-        </thead>
-        <tbody>
-          {
-            RelationDataDefault.RelationRowData.map(({property,value},index)=>{
-              return (property!=""?<RelationRow key={index} property={property} value={value}>
-              </RelationRow>:null);
-            })
-          }
-        </tbody>
-      </table>
-      <Handle type="target" position={Position.Bottom} />
+    <div>
+      <Handle type="source" position={Position.Top} isConnectable={isConnectable} />
+      <div className="relationnode">
+        <div className="releation-name">Table_one</div>
+        <div className="table nodrag">
+          <div className="header">
+            <div className="domain-name">Property</div>
+            <div className="domain-value">Value</div>
+          </div>
+          <div className="body">
+          </div>
+        </div>
+      </div>
+      <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} />
     </div>
   );
 };

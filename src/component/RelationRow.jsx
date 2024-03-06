@@ -1,26 +1,14 @@
 import React, { useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
-import { useFormData,useFormDataDispatch } from '../App';
 
 const RelationRow = ({ property, value }) => {
-  const dispatch = useFormDataDispatch();
-
-  useEffect(() => {
-    dispatch({ type: "addNode", node: { type: "RelationRowDot" } });
-    return () => {
-    };
-  }, [dispatch]); 
-
-  console.log(useFormData())
-
   return (
-    <tr>
-      <td>{property}</td>
-      <td>
-        <div>{value}</div>
-        <Handle type='target' position={Position.Right} />
-      </td>
-    </tr>
+    <div className="tuple nodrag">
+       <Handle type='target' position={Position.Left} />
+       <div className="domain-input">Class</div>
+       <div className="domain-input">IV</div>
+       <Handle type='target' position={Position.Right} />
+    </div>
   );
 };
 
