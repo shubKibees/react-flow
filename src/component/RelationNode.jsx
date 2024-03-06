@@ -6,7 +6,7 @@ const RelationNode = ({ data, isConnectable }) => {
 
   return (
     <div>
-      <Handle type="source" position={Position.Top} isConnectable={isConnectable} />
+      <Handle type="source" position={Position.Top} isConnectable={isConnectable} id='1' />
       <div className="relationnode">
         <div className="releation-name">Table_one</div>
         <div className="table nodrag">
@@ -18,7 +18,7 @@ const RelationNode = ({ data, isConnectable }) => {
           </div>
         </div>
       </div>
-      <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} />
+      <Handle type="source" position={Position.Bottom} isConnectable={isConnectable} id='2' />
     </div>
   );
 };
