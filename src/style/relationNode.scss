@@ -3,33 +3,51 @@
 
 /* Add this to your CSS or SCSS file */
 
+
 tr,td{
    position: relative;
 }
 
+:is(.tuple,.header){
+   $padding-inline:10px;
+   width: calc(gv.$tuple-width - 2 * $padding-inline);
+   height: gv.$tuple-height;
+   aspect-ratio: 3/0.7;
+   padding: 0px 10px;
+   background-color: antiquewhite;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   justify-items: stretch;
+   [class^="domain"] {
+      display: flex;
+      align-items: center;
+      padding: 0px 5px;
+   }
+   :is(.domain-property,.domain-type){
+      border-right: 1px solid rgb(49, 48, 48);
+   }  
+}
+.header{
+   padding: 0px 10px;
+   width: 100%;
+   height: gv.$tuple-height;
+}
 .relationnode{
+   --no-tuple:2;
+   $height-relation:calc((var(--no-tuple) + 2) * (gv.$tuple-height + gv.$tuple-margin-top));
    $border-radius:20px;
+   width: gv.$width-relation;
    border: 1px solid gv.$nav-bar-color; 
    border-radius: $border-radius;
-   background-color: gv.$node-background;
+   background-color:gv.$node-background;
+   height: $height-relation;
    .releation-name{
       text-align: center;
       padding: 10px 20px;
       background-color: gv.$nav-bar-color;
       border-radius: $border-radius $border-radius 0px 0px;
+      height: gv.$tuple-height;
    }
-   .table{
-      :is(.header,.tuple){
-         display: grid;
-         grid-template-columns: 1fr 1fr;
-         gap: 5px;
-         padding: 10px;
-         &:not(:last-child){
-            border-bottom: 1px solid gv.$nav-bar-color;
-         }
-      }
-   }
-
  }
  
 
