@@ -20,6 +20,6 @@ export const initialNodes = [
    { id: 'node-2', data: { label: 'Node 2' }, position: { x: 100, y: 100 } },
    { id: 'node-3', data: { label: 'Node 3' }, position: { x: 200, y: 300 } },
    {id:'node-1a',type:"relationRow",data:{rowNo:"1"},position:{x:10,y:90},parentNode:"node-1"},
-   {id:'node-2a',type:"relationRow",data:{rowNo:"2"},position:{x:10,y:140},parentNode:"node-1"},
+   {id:'node-3a',type:"relationRow",data:{rowNo:"2"},position:{x:10,y:140},parentNode:"node-1"},
  ];
 

@@ -27,8 +27,9 @@ RelationRowData:[
           <div className="body">
             {
               // data.RelationRowData.map((row,index)=>(
-                dispatch({type:"add_row",payload:{id:'node-2a',type:"relationRow",data:{rowNo:"3"},position:{x:10,y:140},parentNode:"node-1"}})
+                // dispatch({type:"add_row",payload:{id:'node-2a',type:"relationRow",data:{rowNo:"3"},position:{x:10,y:140},parentNode:"node-1"}})
               // ))
+              console.log(dispatch)
             }
           </div>
         </div>

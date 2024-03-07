@@ -17,13 +17,11 @@ import "../style/relationNode.scss"
 
 import RelationNode from './RelationNode';
 import RelationRow from './RelationRow';
-import { initialNodes,initialEdges } from '../utility/tableDataDefault';
+import { useNode } from '../App';
 const nodeTypes = { relationNode: RelationNode,relationRow:RelationRow };
 
 const ReactFlowGrid = () => {
-  const [nodes, setNodes] = useNodesState(initialNodes);
-  const [edges, setEdges] = useEdgesState(initialEdges);
-
+  const node = useNode;
   const onNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
     [setNodes]
@@ -39,8 +37,8 @@ const ReactFlowGrid = () => {
     return (
       <div >
         <ReactFlow
-          nodes={nodes}
-          edges={edges}
+          nodes={node.initialNodes}
+          edges={node.initialEdges}
           onNodesChange={onNodesChange}
           onConnect={onConnect}
           nodeTypes={nodeTypes}

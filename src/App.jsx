@@ -9,10 +9,12 @@ const nodeDispatch=createContext();
 
 function nodeReducer(node, action) {
   switch(action.type){
-    case "add_row":
+    case "add_row":{
       return{...node,initialNodes:[...node.initialNodes,action.payload]}
-      default:
+    }
+      default:{
         return node;
+      }
   }
 }
 
